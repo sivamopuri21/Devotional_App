@@ -1,0 +1,246 @@
+.container {
+    min-height: 100vh;
+    background: var(--color-surface);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    background: white;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+}
+
+.header h1 {
+    flex: 1;
+    font-size: 1.25rem;
+}
+
+.editBtn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.main {
+    padding: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Household Card */
+.householdCard {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.householdHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.householdIcon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--color-gold);
+    border-radius: var(--radius-md);
+}
+
+.householdInfo h2 {
+    margin-bottom: var(--space-1);
+}
+
+.householdInfo span {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.address {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Section */
+.section {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.inviteBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: none;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+/* Members */
+.memberList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.memberCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+}
+
+.memberAvatar {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+}
+
+.memberInfo {
+    flex: 1;
+}
+
+.memberName {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 500;
+}
+
+.headBadge {
+    padding: 2px 8px;
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--color-gold);
+    border-radius: var(--radius-full);
+    font-size: 0.625rem;
+    font-weight: 700;
+}
+
+.memberRole {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.moreBtn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--space-2);
+}
+
+/* Invites */
+.inviteList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.inviteCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: #fff8f0;
+    border-radius: var(--radius-md);
+}
+
+.inviteIcon {
+    font-size: 1.5rem;
+}
+
+.inviteInfo {
+    flex: 1;
+}
+
+.inviteInfo span {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.cancelInvite {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.actionBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.leaveBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: white;
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
