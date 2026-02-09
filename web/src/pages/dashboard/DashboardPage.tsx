@@ -12,6 +12,7 @@ export default function DashboardPage() {
         navigate('/');
     };
 
+
     return (
         <div className={styles.container}>
             {/* Sidebar */}
