@@ -5,6 +5,7 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import HouseholdPage from './pages/household/HouseholdPage';
+import BookServicePage from './pages/BookServicePage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -26,6 +27,14 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <HouseholdPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/book-service"
+                element={
+                    <ProtectedRoute>
+                        <BookServicePage />
                     </ProtectedRoute>
                 }
             />
