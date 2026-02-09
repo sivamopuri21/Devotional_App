@@ -1,8 +1,8 @@
-import { UserRepository } from '../../infrastructure/repositories/UserRepository';
-import { OtpRepository, OtpPurpose } from '../../infrastructure/repositories/OtpRepository';
-import { TokenRepository } from '../../infrastructure/repositories/TokenRepository';
-import { AuthService } from '../../infrastructure/services/AuthService';
-import { CreateUserData, User, UserStatus, AuthenticatedUser } from '../../domain/entities';
+import { UserRepository } from '../../../infrastructure/repositories/UserRepository';
+import { OtpRepository, OtpPurpose } from '../../../infrastructure/repositories/OtpRepository';
+import { TokenRepository } from '../../../infrastructure/repositories/TokenRepository';
+import { AuthService } from '../../../infrastructure/services/AuthService';
+import { CreateUserData, User, UserStatus, AuthenticatedUser } from '../../../domain/entities';
 
 export interface RegisterInput {
     email?: string;

@@ -1,13 +1,13 @@
-import { HouseholdRepository } from '../../infrastructure/repositories/HouseholdRepository';
-import { UserRepository } from '../../infrastructure/repositories/UserRepository';
+import { HouseholdRepository } from '../../../infrastructure/repositories/HouseholdRepository';
+import { UserRepository } from '../../../infrastructure/repositories/UserRepository';
 import {
     Household,
     HouseholdInvite,
     HouseholdRole,
     InviteStatus,
     CreateHouseholdData
-} from '../../domain/entities';
-import { AppError } from './auth/AuthUseCases';
+} from '../../../domain/entities';
+import { AppError } from '../auth/AuthUseCases';
 
 export class CreateHouseholdUseCase {
     constructor(
