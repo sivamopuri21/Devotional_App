@@ -36,7 +36,17 @@ export default function AppLayout() {
             <aside className={`${styles.sidebar} ${showMobileMenu ? styles.sidebarOpen : ''}`}>
                 <div className={styles.sidebarHeader}>
                     <div className={styles.logo}>
-                        <span className={styles.logoIcon}>ॐ</span>
+                        <span className={styles.logoIcon}>
+                            <video 
+                                autoPlay 
+                                loop 
+                                muted 
+                                playsInline
+                                style={{ width: '32px', height: '32px', objectFit: 'cover', borderRadius: '4px' }}
+                            >
+                                <source src="/assets/videos/Homam.mp4" type="video/mp4" />
+                            </video>
+                        </span>
                         <span>Swadhrama</span>
                     </div>
                     <button className={styles.closeMobileMenu} onClick={() => setShowMobileMenu(false)}>
@@ -74,7 +84,17 @@ export default function AppLayout() {
                         <Menu size={24} />
                     </button>
                     <div className={styles.mobileLogo}>
-                        <span className={styles.logoIcon}>ॐ</span>
+                        <span className={styles.logoIcon}>
+                            <video 
+                                autoPlay 
+                                loop 
+                                muted 
+                                playsInline
+                                style={{ width: '32px', height: '32px', objectFit: 'cover', borderRadius: '4px' }}
+                            >
+                                <source src="/assets/videos/Homam.mp4" type="video/mp4" />
+                            </video>
+                        </span>
                         <span>Swadhrama</span>
                     </div>
                     <div className={styles.headerActions}>

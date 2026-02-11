@@ -71,7 +71,17 @@ export default function RegisterPage() {
         <div className={styles.container}>
             <div className={styles.formCard}>
                 <div className={styles.logo}>
-                    <span className={styles.logoIcon}>ॐ</span>
+                    <span className={styles.logoIcon}>
+                        <video 
+                            autoPlay 
+                            loop 
+                            muted 
+                            playsInline
+                            style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '8px' }}
+                        >
+                            <source src="/assets/videos/Homam.mp4" type="video/mp4" />
+                        </video>
+                    </span>
                 </div>
 
                 <h1>Create Account</h1>
