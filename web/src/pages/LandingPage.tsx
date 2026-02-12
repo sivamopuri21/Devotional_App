@@ -11,7 +11,17 @@ export default function LandingPage() {
             {/* Header */}
             <header className={styles.header}>
                 <div className={styles.logo}>
-                    <span className={styles.logoIcon}>ॐ</span>
+                    <span className={styles.logoIcon}>
+                        <video 
+                            autoPlay 
+                            loop 
+                            muted 
+                            playsInline
+                            style={{ width: '32px', height: '32px', objectFit: 'cover', borderRadius: '4px' }}
+                        >
+                            <source src="/assets/videos/Homam.mp4" type="video/mp4" />
+                        </video>
+                    </span>
                     <span>Swadhrama</span>
                 </div>
                 <nav className={styles.nav}>
@@ -105,7 +115,17 @@ export default function LandingPage() {
             <footer className={styles.footer}>
                 <div className={styles.footerContent}>
                     <div className={styles.footerBrand}>
-                        <span className={styles.logoIcon}>ॐ</span>
+                        <span className={styles.logoIcon}>
+                            <video 
+                                autoPlay 
+                                loop 
+                                muted 
+                                playsInline
+                                style={{ width: '32px', height: '32px', objectFit: 'cover', borderRadius: '4px' }}
+                            >
+                                <source src="/assets/videos/Homam.mp4" type="video/mp4" />
+                            </video>
+                        </span>
                         <span>Swadhrama Parirakshna</span>
                     </div>
                     <p>Protecting Sacred Duty</p>
