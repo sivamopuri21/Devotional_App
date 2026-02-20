@@ -10,10 +10,14 @@ import { errorHandler, notFoundHandler } from './interfaces/middleware';
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+}));
 app.use(cors({
     origin: config.cors.origin,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-request-id'],
 }));
 
 // Rate limiting
