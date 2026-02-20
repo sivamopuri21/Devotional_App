@@ -5,8 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
+    "build": "npx prisma generate && tsc",
     "start": "node dist/server.js",
+    "postinstall": "npx prisma generate",
     "test": "jest",
     "test:integration": "jest --config jest.integration.config.js",
     "lint": "eslint src/**/*.ts",

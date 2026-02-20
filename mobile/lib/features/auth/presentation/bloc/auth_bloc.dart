@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import '../../../../core/di/injection_container.dart' as di;
+import '../../../../core/network/api_client.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/register_usecase.dart';
 
@@ -73,11 +75,20 @@ class AuthLoading extends AuthState {}
 class AuthSuccess extends AuthState {
   final String userId;
   final String? accessToken;
+  final String role;
+  final String fullName;
+  final String? email;
 
-  AuthSuccess({required this.userId, this.accessToken});
+  AuthSuccess({
+    required this.userId,
+    this.accessToken,
+    this.role = 'MEMBER',
+    this.fullName = '',
+    this.email,
+  });
 
   @override
-  List<Object?> get props => [userId, accessToken];
+  List<Object?> get props => [userId, accessToken, role, fullName, email];
 }
 
 class AuthNeedsVerification extends AuthState {
@@ -124,7 +135,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ));
       result.fold(
         (failure) => emit(AuthFailure(message: failure.message, code: failure.code)),
-        (auth) => emit(AuthSuccess(userId: auth.userId, accessToken: auth.accessToken)),
+        (auth) {
+          di.sl<ApiClient>().setAccessToken(auth.accessToken);
+          emit(AuthSuccess(
+            userId: auth.userId,
+            accessToken: auth.accessToken,
+            role: auth.role,
+            fullName: auth.fullName,
+            email: auth.email,
+          ));
+        },
       );
     } catch (e) {
       emit(AuthFailure(message: 'An unexpected error occurred'));
@@ -162,7 +182,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onLogoutRequested(LogoutRequested event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    // TODO: Clear tokens and logout
+    di.sl<ApiClient>().setAccessToken(null);
     emit(AuthInitial());
   }
 }

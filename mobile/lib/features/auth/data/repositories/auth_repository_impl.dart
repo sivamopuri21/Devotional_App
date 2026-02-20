@@ -17,11 +17,15 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final response = await remoteDataSource.login(identifier, password);
       await localDataSource.saveTokens(response['accessToken'], response['refreshToken']);
-      return Right(AuthResult(
+      final result = AuthResult(
         userId: response['user']['id'],
         accessToken: response['accessToken'],
         refreshToken: response['refreshToken'],
-      ));
+        role: response['user']['role'] ?? 'MEMBER',
+        fullName: response['user']['profile']?['fullName'] ?? '',
+        email: response['user']['email'],
+      );
+      return Right(result);
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -62,6 +66,9 @@ class AuthRepositoryImpl implements AuthRepository {
         userId: response['user']['id'],
         accessToken: response['accessToken'],
         refreshToken: response['refreshToken'],
+        role: response['user']['role'] ?? 'MEMBER',
+        fullName: response['user']['profile']?['fullName'] ?? '',
+        email: response['user']['email'],
       ));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
