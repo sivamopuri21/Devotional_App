@@ -66,6 +66,29 @@ app.use(`${apiPrefix}/service-requests`, serviceRequestRoutes);
 app.use(`${apiPrefix}/notifications`, notificationRoutes);
 app.use(`${apiPrefix}/admin`, adminRoutes);
 
+// Admin setup endpoint (one-time, protected by secret)
+app.post(`${apiPrefix}/setup-admin`, async (req, res) => {
+    const { secret, email, password } = req.body;
+    if (secret !== (process.env.ADMIN_SETUP_SECRET || 'swadhrama-admin-setup-2026')) {
+        return res.status(403).json({ success: false, error: 'Invalid secret' });
+    }
+    try {
+        const bcrypt = require('bcryptjs');
+        const { PrismaClient } = require('@prisma/client');
+        const prisma = new PrismaClient();
+        const hash = await bcrypt.hash(password, 12);
+        const user = await prisma.user.upsert({
+            where: { email },
+            update: { role: 'ADMIN', status: 'ACTIVE', emailVerified: true, passwordHash: hash },
+            create: { email, passwordHash: hash, role: 'ADMIN', status: 'ACTIVE', emailVerified: true, profile: { create: { fullName: 'Admin' } } },
+        });
+        await prisma.$disconnect();
+        res.json({ success: true, data: { id: user.id, email: user.email, role: user.role } });
+    } catch (e: any) {
+        res.status(500).json({ success: false, error: e.message });
+    }
+});
+
 // Error handling
 app.use(notFoundHandler);
 app.use(errorHandler);
