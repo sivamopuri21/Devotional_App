@@ -123,6 +123,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginRequested>(_onLoginRequested);
     on<RegisterRequested>(_onRegisterRequested);
     on<VerifyOtpRequested>(_onVerifyOtpRequested);
+    on<ResendOtpRequested>(_onResendOtpRequested);
     on<LogoutRequested>(_onLogoutRequested);
   }
 
@@ -175,9 +176,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onVerifyOtpRequested(VerifyOtpRequested event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    // TODO: Implement OTP verification via repository
-    await Future.delayed(const Duration(seconds: 1));
-    emit(AuthSuccess(userId: 'temp-user-id'));
+    try {
+      final result = await loginUseCase.repository.verifyOtp(event.contact, event.otp, event.purpose);
+      result.fold(
+        (failure) => emit(AuthFailure(message: failure.message, code: failure.code)),
+        (auth) {
+          di.sl<ApiClient>().setAccessToken(auth.accessToken);
+          emit(AuthSuccess(
+            userId: auth.userId,
+            accessToken: auth.accessToken,
+            role: auth.role,
+            fullName: auth.fullName,
+            email: auth.email,
+          ));
+        },
+      );
+    } catch (e) {
+      emit(AuthFailure(message: 'Verification failed'));
+    }
+  }
+
+  Future<void> _onResendOtpRequested(ResendOtpRequested event, Emitter<AuthState> emit) async {
+    try {
+      await loginUseCase.repository.sendOtp(event.contact, 'registration');
+    } catch (_) {
+      // Silently fail — user can retry
+    }
   }
 
   Future<void> _onLogoutRequested(LogoutRequested event, Emitter<AuthState> emit) async {
